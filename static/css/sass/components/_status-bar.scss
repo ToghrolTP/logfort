@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as v;
+
+.status-bar {
+    background-color: v.$gray;
+    color: v.$bg-color;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    .mode {
+        background-color: v.$fg-color;
+        color: v.$bg-color;
+        padding: 0 10px;
+        margin-right: 10px;
+        text-transform: uppercase;
+    }
+}

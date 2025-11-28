@@ -1,0 +1,278 @@
+// 1. Configuration and helpers
+@use 'abstracts/variables';
+
+// 2. Vendors
+
+// 3. Base stuff
+@use 'base/base';
+
+// 4. Layout
+
+// 5. Components
+@use 'components/terminal';
+@use 'components/file-list';
+@use 'components/status-bar';
+
+:root {
+  /* Gruvbox Dark Palette */
+  --bg: #282828;
+  --fg: #ebdbb2;
+  --green: #98971a;
+  --yellow: #d79921;
+  --blue: #458588;
+  --gray: #928374;
+  --cursor: #ebdbb2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Courier New", Courier, monospace;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* The Main Container */
+.terminal-window {
+  width: 100%;
+  max-width: 800px;
+  border: 2px solid var(--gray);
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Content Area */
+.terminal-body {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Typography & Layout */
+h1 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--green);
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.prompt {
+  color: var(--green);
+  font-weight: bold;
+}
+.path {
+  color: var(--blue);
+}
+
+/* Navigation Links behaving like files */
+ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+li::before {
+  content: "-rwxr-xr-x"; /* Fake permissions */
+  color: var(--gray);
+  margin-right: 15px;
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Hover effect: Invert colors like a block cursor */
+a:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* Blinking Cursor */
+.cursor::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--cursor);
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Vim Status Bar */
+.status-bar {
+  background-color: var(--gray);
+  color: var(--bg);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.mode {
+  background-color: var(--fg);
+  color: var(--bg);
+  padding: 0 10px;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+
+:root {
+  /* Gruvbox Dark Palette */
+  --bg: #282828;
+  --fg: #ebdbb2;
+  --green: #98971a;
+  --yellow: #d79921;
+  --blue: #458588;
+  --gray: #928374;
+  --cursor: #ebdbb2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Courier New", Courier, monospace;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* The Main Container */
+.terminal-window {
+  width: 100%;
+  max-width: 800px;
+  border: 2px solid var(--gray);
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Content Area */
+.terminal-body {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Typography & Layout */
+h1 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--green);
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.prompt {
+  color: var(--green);
+  font-weight: bold;
+}
+.path {
+  color: var(--blue);
+}
+
+/* Navigation Links behaving like files */
+ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+li::before {
+  content: "-rwxr-xr-x"; /* Fake permissions */
+  color: var(--gray);
+  margin-right: 15px;
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Hover effect: Invert colors like a block cursor */
+a:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* Blinking Cursor */
+.cursor::after {
+  content: "█";
+  animation: blink 1s step-end infinite;
+  color: var(--cursor);
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Vim Status Bar */
+.status-bar {
+  background-color: var(--gray);
+  color: var(--bg);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.mode {
+  background-color: var(--fg);
+  color: var(--bg);
+  padding: 0 10px;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
