@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }}@System</title>
+    <style>
+        :root {
+            /* Gruvbox Dark Palette */
+            --bg: #282828;
+            --fg: #ebdbb2;
+            --green: #98971a;
+            --yellow: #d79921;
+            --blue: #458588;
+            --gray: #928374;
+            --cursor: #ebdbb2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: 'Courier New', Courier, monospace; /* Fallback for safe monospace */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* The Main Container */
+        .terminal-window {
+            width: 100%;
+            max-width: 800px;
+            border: 2px solid var(--gray);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+        }
+
+        /* Content Area */
+        .terminal-body {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Typography & Layout */
+        h1 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--green);
+        }
+
+        p { margin-bottom: 10px; }
+
+        .prompt {
+            color: var(--green);
+            font-weight: bold;
+        }
+        .path { color: var(--blue); }
+
+        /* Navigation Links behaving like files */
+        ul { list-style: none; margin-top: 20px; }
+        
+        li {
+            margin-bottom: 5px;
+            display: flex;
+        }
+
+        li::before {
+            content: "-rwxr-xr-x"; /* Fake permissions */
+            color: var(--gray);
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: var(--fg);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Hover effect: Invert colors like a block cursor */
+        a:hover {
+            background-color: var(--fg);
+            color: var(--bg);
+        }
+
+        /* Blinking Cursor */
+        .cursor::after {
+            content: "█";
+            animation: blink 1s step-end infinite;
+            color: var(--cursor);
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Vim Status Bar */
+        .status-bar {
+            background-color: var(--gray);
+            color: var(--bg);
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .mode {
+            background-color: var(--fg);
+            color: var(--bg);
+            padding: 0 10px;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-window">
+        <div class="terminal-body">
+            <div>
+                <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path">~/workspace</span>$ cargo run --bin welcome
+            </div>
+            
+            <br>
+            <h1>> System Ready. Welcome, Toghrol.</h1>
+            <p>OS: Ubuntu 25.04 (Noble Numbat)</p>
+            <p>Shell: /bin/bash</p>
+            <p>Editor: Vim 9.1</p>
+            <br>
+            <p>Select a binary to execute:</p>
+
+            <ul>
+                <li><a href="#">./projects.rs</a></li>
+                <li><a href="#">./about_me.md</a></li>
+                <li><a href="#">./contact_info.json</a></li>
+                <li><a href="#">./blog/</a></li>
+            </ul>
+
+            <br>
+            <div>
+                <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path">~/workspace</span>$ <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div><span class="mode">NORMAL</span> index.html</div>
+            <div>rustc 1.83.0 | utf-8 | 100%</div>
+        </div>
+    </div>
+
+</body>
+</html>
