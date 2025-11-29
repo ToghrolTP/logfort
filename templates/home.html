@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/css/sass/main.css" />
-    <title>{{ site_name }}@System</title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+{% block title %}sysetm{% endblock %}
+
+{% block content %}
     <div class="terminal-window">
       <div class="terminal-body">
         <div>
@@ -43,5 +39,4 @@
         <div>rustc 1.83.0 | utf-8 | 100%</div>
       </div>
     </div>
-  </body>
-</html>
+{% endblock %}
