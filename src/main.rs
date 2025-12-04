@@ -1,11 +1,16 @@
 mod handlers;
 mod templates;
+mod db;
+mod config;
 
 use std::net::SocketAddr;
+use dotenvy::dotenv;
 
 #[tokio::main]
 async fn main() {
-    let bind_address = SocketAddr::from(([127, 0, 0, 1], 3000));
+    dotenv().ok();
+
+    let bind_address = SocketAddr::from(([127, 0, 0, 1], config::server_port()));
 
     let app = handlers::setup_routes();
     let listener = tokio::net::TcpListener::bind(bind_address).await.unwrap();
