@@ -11,12 +11,21 @@ use dotenvy::dotenv;
 use std::{
     io::{self, Write, stdout},
     net::SocketAddr,
+    env::args,
 };
 use utils::password::hash_password;
 
 #[tokio::main]
 async fn main() {
     dotenv().ok();
+
+    let arguments = args();
+
+    for arg in arguments {
+        if arg == "create-admin" {
+            create_admin_cli().await;
+        }
+    }
 
     let pool = match create_pool().await {
         Ok(pool) => pool,
@@ -31,7 +40,6 @@ async fn main() {
         std::process::exit(1)
     };
 
-    create_admin_cli().await;
 
     let bind_address = SocketAddr::from(([127, 0, 0, 1], config::server_port()));
 
