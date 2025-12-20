@@ -2,7 +2,8 @@ use askama::Template;
 use axum::response::{Html, IntoResponse};
 
 use crate::templates::{
-    home::{ HomeTemplate, ContactInfoTemplate, AboutMeTemplate },
+    blog::BlogTemplate,
+    home::{AboutMeTemplate, ContactInfoTemplate, HomeTemplate},
 };
 
 pub async fn home() -> impl IntoResponse {
@@ -19,6 +20,12 @@ pub async fn contact_info() -> impl IntoResponse {
 
 pub async fn about_me() -> impl IntoResponse {
     let template = AboutMeTemplate;
+
+    Html(template.render().unwrap())
+}
+
+pub async fn blog() -> impl IntoResponse {
+    let template = BlogTemplate;
 
     Html(template.render().unwrap())
 }
