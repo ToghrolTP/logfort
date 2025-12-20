@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock title %}
+
+{% block content %}
+    <div class="terminal-window">
+      <div class="terminal-body">
+        <div>
+          <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path"
+            >~/workspace/blog</span
+          >$ cargo run --bin blog
+        </div>
+
+        <br />
+        <h1>> Welcome to the Blog Section.</h1>
+        <p>Here you'll find articles and posts about various topics.</p>
+        <br />
+        <p>Select a post to read:</p>
+
+        <ul>
+          <li><a href="#">./post1.md</a></li>
+          <li><a href="#">./post2.md</a></li>
+          <li><a href="#">./post3.md</a></li>
+        </ul>
+
+        <br />
+        <div>
+          <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path"
+            >~/workspace/blog</span
+          >$ <span class="cursor"></span>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div><span class="mode">NORMAL</span> blog.html</div>
+        <div>rustc 1.83.0 | utf-8 | 100%</div>
+      </div>
+    </div>
+{% endblock content %}
