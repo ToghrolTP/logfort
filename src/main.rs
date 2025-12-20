@@ -9,9 +9,9 @@ use colored::Colorize;
 use db::connection::create_pool;
 use dotenvy::dotenv;
 use std::{
+    env::args,
     io::{self, Write, stdout},
     net::SocketAddr,
-    env::args,
 };
 use utils::password::hash_password;
 
@@ -39,7 +39,6 @@ async fn main() {
         eprintln!("{}: {}", "❌ Failed to run migrations".red(), e);
         std::process::exit(1)
     };
-
 
     let bind_address = SocketAddr::from(([127, 0, 0, 1], config::server_port()));
 
