@@ -6,19 +6,20 @@ pub trait WithSiteContext {
     }
 }
 
+// Home
 #[derive(Template)]
-#[template(path="home.html")]
+#[template(path = "home.html")]
 pub struct HomeTemplate;
-
 impl WithSiteContext for HomeTemplate {}
 
+// Contact Info
 #[derive(Template)]
-#[template(path="contact-info.html")]
+#[template(path = "contact-info.html")]
 pub struct ContactInfoTemplate;
-
 impl WithSiteContext for ContactInfoTemplate {}
 
+// About Me
 #[derive(Template)]
-#[template(path="about_me.html")]
+#[template(path = "about_me.html")]
 pub struct AboutMeTemplate;
 impl WithSiteContext for AboutMeTemplate {}
