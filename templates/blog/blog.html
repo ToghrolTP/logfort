@@ -20,11 +20,6 @@
             <p class="intro-text" id="intro-text">
                 Welcome to my digital garden. I write about backend development, Linux configs, and clean code.
             </p>
-            <div class="controls">
-                <button class="btn-toggle" onclick="toggleLanguage()">
-                    <span id="lang-label">EN / FA</span>
-                </button>
-            </div>
         </div>
     </header>
 
@@ -33,7 +28,7 @@
             <div class="post-header">
                 <span class="post-date">2025-12-20</span>
             </div>
-            <a href="#" class="post-title" id="title-1">Automating the Boring Stuff with Python</a>
+            <a href="#" class="post-title" id="title-1">سلام</a>
             <p class="post-excerpt" id="excerpt-1">
                 I spent three hours writing a script to save myself five minutes of work. 
                 Was it worth it? Absolutely. Automation isn't just about time; it's about mental clarity.
@@ -71,58 +66,28 @@
     <div><span class="mode" id="vim-mode" style="background: transparent; border: 1px solid #98971a; color: #98971a; border-radius: 2px;">INSERT</span> blog.html</div>
     <div>rustc 1.83.0 | utf-8 | 100%</div>
 </div>
-
 <script>
-    const content = {
-        en: {
-            intro: "Welcome to my digital garden. I write about backend development, Linux configs, and clean code.",
-            title1: "Automating the Boring Stuff with Python",
-            excerpt1: "I spent three hours writing a script to save myself five minutes of work. Was it worth it? Absolutely. Automation isn't just about time; it's about mental clarity.",
-            read: "Read Buffer",
-            title2: "Designing with Gruvbox",
-            excerpt2: "Why do developers love this color scheme? It’s low contrast yet distinct. Here is how I implemented it across my entire Linux workspace.",
-            mode: "INSERT"
-        },
-        fa: {
-            intro: "به باغ دیجیتال من خوش آمدید. من در مورد توسعه بک‌اند، کانفیگ‌های لینوکس و کدنویسی تمیز می‌نویسم.",
-            title1: "خودکارسازی کارهای خسته‌کننده با پایتون",
-            excerpt1: "سه ساعت وقت صرف نوشتن اسکریپتی کردم تا پنج دقیقه از کارم را ذخیره کنم. آیا ارزشش را داشت؟ قطعاً. اتوماسیون فقط در مورد زمان نیست؛ در مورد شفافیت ذهنی است.",
-            read: "خواندن بافر",
-            title2: "طراحی با تم Gruvbox",
-            excerpt2: "چرا توسعه‌دهندگان عاشق این رنگ‌بندی هستند؟ کنتراست پایینی دارد اما متمایز است. در اینجا نحوه پیاده‌سازی آن را در کل محیط لینوکس خود شرح می‌دهم.",
-            mode: "NORMAL" 
-        }
-    };
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Select all elements that contain dynamic text
+        const textElements = document.querySelectorAll('.post-title, .post-excerpt, .intro-text');
 
-    let isEnglish = true;
+        // 2. Define Persian/Arabic Unicode Regex (Common range)
+        // This checks if the string starts with characters in the Arabic/Persian block
+        const persianRegex = /^[\u0600-\u06FF\uFB8A\u067E\u0686\u06AF\u200C\u200F]/;
 
-    function toggleLanguage() {
-        const html = document.documentElement;
-        const modeBadge = document.getElementById('vim-mode');
-        
-        isEnglish = !isEnglish;
-        const lang = isEnglish ? 'en' : 'fa';
-        const dir = isEnglish ? 'ltr' : 'rtl';
-
-        html.setAttribute('dir', dir);
-        html.setAttribute('lang', lang);
-
-        document.getElementById('intro-text').innerText = content[lang].intro;
-        document.getElementById('title-1').innerText = content[lang].title1;
-        document.getElementById('excerpt-1').innerText = content[lang].excerpt1;
-        document.getElementById('read-1').innerText = content[lang].read;
-        document.getElementById('title-2').innerText = content[lang].title2;
-        document.getElementById('excerpt-2').innerText = content[lang].excerpt2;
-        document.getElementById('read-2').innerText = content[lang].read;
-
-        modeBadge.innerText = content[lang].mode;
-        if(lang === 'fa') {
-            modeBadge.style.borderColor = '#d65d0e'; // Orange
-            modeBadge.style.color = '#d65d0e'; 
-        } else {
-            modeBadge.style.borderColor = '#98971a'; // Green
-            modeBadge.style.color = '#98971a'; 
-        }
-    }
+        textElements.forEach(el => {
+            const text = el.innerText.trim();
+            
+            // 3. Check and Apply Direction
+            if (persianRegex.test(text)) {
+                el.style.direction = 'rtl';
+                el.style.textAlign = 'right'; // Optional: ensures text aligns right
+                el.style.fontFamily = "'Vazirmatn', sans-serif"; // Ensure Persian font is used
+            } else {
+                el.style.direction = 'ltr';
+                el.style.textAlign = 'left';
+            }
+        });
+    });
 </script>
 {% endblock content %}
