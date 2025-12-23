@@ -1,6 +1,7 @@
 /target
 /static/css/sass/*.css
 /static/css/sass/*.map
+git_diff.txt
 
 .env
 package-lock.json
