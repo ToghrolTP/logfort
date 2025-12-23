@@ -1,22 +1,32 @@
-$bg-hard:      #1d2021;
-$bg-soft:      #32302f;
+$fg-color: #ebdbb2;
+$green: #98971a;
+$yellow: #d79921;
+$blue: #458588;
+$gray: #928374;
+$cursor: #ebdbb2;
 
-$fg-color:     #ebdbb2;
-$fg-dim:       #a89984;
+$font-stack: "Courier New", Courier, monospace;
 
-$red:          #cc241d;
-$green:        #98971a;
-$yellow:       #d79921;
-$blue:         #458588;
-$purple:       #b16286;
-$aqua:         #689d6a;
-$gray:         #928374;
-$orange:       #d65d0e;
+$bg-hard: #1d2021;
+$bg-soft: #32302f;
+$bg-color: #282828;
 
-$cursor:       #ebdbb2;
+$fg-color: #ebdbb2;
+$fg-dim: #a89984;
 
-$font-stack:   'Fira Code', 'Courier New', monospace;
-$font-persian: 'Vazirmatn', sans-serif;
+$red: #cc241d;
+$green: #98971a;
+$yellow: #d79921;
+$blue: #458588;
+$purple: #b16286;
+$aqua: #689d6a;
+$gray: #928374;
+$orange: #d65d0e;
 
-$radius:        4px;
+$cursor: #ebdbb2;
+
+$font-stack: "Fira Code", "Courier New", monospace;
+$font-persian: "Vazirmatn", sans-serif;
+
+$radius: 4px;
 $shadow-offset: 6px;
