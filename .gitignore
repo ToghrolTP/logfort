@@ -1,0 +1,7 @@
+/target
+/static/css/sass/*.css
+/static/css/sass/*.map
+
+.env
+package-lock.json
+node_modules/
