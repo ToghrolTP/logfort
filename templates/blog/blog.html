@@ -3,37 +3,126 @@
 {% block title %}Blog{% endblock title %}
 
 {% block content %}
-    <div class="terminal-window">
-      <div class="terminal-body">
-        <div>
-          <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path"
-            >~/workspace/blog</span
-          >$ cargo run --bin blog
+<div class="blog-container">
+    <header class="blog-header">
+        <div class="nav-bar">
+            <div class="logo"><span>~/</span>logfort_blog</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about-me" class="nav-link">About</a></li>
+                    <li><a href="/blog" class="nav-link active">Blog</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <br />
-        <h1>> Welcome to the Blog Section.</h1>
-        <p>Here you'll find articles and posts about various topics.</p>
-        <br />
-        <p>Select a post to read:</p>
-
-        <ul>
-          <li><a href="#">./post1.md</a></li>
-          <li><a href="#">./post2.md</a></li>
-          <li><a href="#">./post3.md</a></li>
-        </ul>
-
-        <br />
-        <div>
-          <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path"
-            >~/workspace/blog</span
-          >$ <span class="cursor"></span>
+        
+        <div class="intro-block">
+            <p class="intro-text" id="intro-text">
+                Welcome to my digital garden. I write about backend development, Linux configs, and clean code.
+            </p>
+            <div class="controls">
+                <button class="btn-toggle" onclick="toggleLanguage()">
+                    <span id="lang-label">EN / FA</span>
+                </button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="status-bar">
-        <div><span class="mode">NORMAL</span> blog.html</div>
-        <div>rustc 1.83.0 | utf-8 | 100%</div>
-      </div>
-    </div>
+    <main>
+        <article class="post-card">
+            <div class="post-header">
+                <span class="post-date">2025-12-20</span>
+            </div>
+            <a href="#" class="post-title" id="title-1">Automating the Boring Stuff with Python</a>
+            <p class="post-excerpt" id="excerpt-1">
+                I spent three hours writing a script to save myself five minutes of work. 
+                Was it worth it? Absolutely. Automation isn't just about time; it's about mental clarity.
+            </p>
+            <div class="post-footer">
+                <div class="tags">
+                    <span class="tag">python</span>
+                    <span class="tag">workflow</span>
+                </div>
+                <a href="#" class="read-btn" id="read-1">Read Buffer</a>
+            </div>
+        </article>
+
+        <article class="post-card">
+            <div class="post-header">
+                <span class="post-date">2025-12-15</span>
+            </div>
+            <a href="#" class="post-title" id="title-2">Designing with Gruvbox</a>
+            <p class="post-excerpt" id="excerpt-2">
+                Why do developers love this color scheme? It’s low contrast yet distinct. 
+                Here is how I implemented it across my entire Linux workspace.
+            </p>
+            <div class="post-footer">
+                <div class="tags">
+                    <span class="tag">design</span>
+                    <span class="tag">css</span>
+                </div>
+                <a href="#" class="read-btn" id="read-2">Read Buffer</a>
+            </div>
+        </article>
+    </main>
+</div>
+
+<div class="status-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; border-top: 1px solid #32302f; background: #1d2021; color: #a89984;">
+    <div><span class="mode" id="vim-mode" style="background: transparent; border: 1px solid #98971a; color: #98971a; border-radius: 2px;">INSERT</span> blog.html</div>
+    <div>rustc 1.83.0 | utf-8 | 100%</div>
+</div>
+
+<script>
+    const content = {
+        en: {
+            intro: "Welcome to my digital garden. I write about backend development, Linux configs, and clean code.",
+            title1: "Automating the Boring Stuff with Python",
+            excerpt1: "I spent three hours writing a script to save myself five minutes of work. Was it worth it? Absolutely. Automation isn't just about time; it's about mental clarity.",
+            read: "Read Buffer",
+            title2: "Designing with Gruvbox",
+            excerpt2: "Why do developers love this color scheme? It’s low contrast yet distinct. Here is how I implemented it across my entire Linux workspace.",
+            mode: "INSERT"
+        },
+        fa: {
+            intro: "به باغ دیجیتال من خوش آمدید. من در مورد توسعه بک‌اند، کانفیگ‌های لینوکس و کدنویسی تمیز می‌نویسم.",
+            title1: "خودکارسازی کارهای خسته‌کننده با پایتون",
+            excerpt1: "سه ساعت وقت صرف نوشتن اسکریپتی کردم تا پنج دقیقه از کارم را ذخیره کنم. آیا ارزشش را داشت؟ قطعاً. اتوماسیون فقط در مورد زمان نیست؛ در مورد شفافیت ذهنی است.",
+            read: "خواندن بافر",
+            title2: "طراحی با تم Gruvbox",
+            excerpt2: "چرا توسعه‌دهندگان عاشق این رنگ‌بندی هستند؟ کنتراست پایینی دارد اما متمایز است. در اینجا نحوه پیاده‌سازی آن را در کل محیط لینوکس خود شرح می‌دهم.",
+            mode: "NORMAL" 
+        }
+    };
+
+    let isEnglish = true;
+
+    function toggleLanguage() {
+        const html = document.documentElement;
+        const modeBadge = document.getElementById('vim-mode');
+        
+        isEnglish = !isEnglish;
+        const lang = isEnglish ? 'en' : 'fa';
+        const dir = isEnglish ? 'ltr' : 'rtl';
+
+        html.setAttribute('dir', dir);
+        html.setAttribute('lang', lang);
+
+        document.getElementById('intro-text').innerText = content[lang].intro;
+        document.getElementById('title-1').innerText = content[lang].title1;
+        document.getElementById('excerpt-1').innerText = content[lang].excerpt1;
+        document.getElementById('read-1').innerText = content[lang].read;
+        document.getElementById('title-2').innerText = content[lang].title2;
+        document.getElementById('excerpt-2').innerText = content[lang].excerpt2;
+        document.getElementById('read-2').innerText = content[lang].read;
+
+        modeBadge.innerText = content[lang].mode;
+        if(lang === 'fa') {
+            modeBadge.style.borderColor = '#d65d0e'; // Orange
+            modeBadge.style.color = '#d65d0e'; 
+        } else {
+            modeBadge.style.borderColor = '#98971a'; // Green
+            modeBadge.style.color = '#98971a'; 
+        }
+    }
+</script>
 {% endblock content %}
