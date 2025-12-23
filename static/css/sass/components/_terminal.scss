@@ -1,22 +1,75 @@
 @use '../abstracts/variables' as v;
+@use 'sass:color'; // <--- NEW: Import the color module
 
 .terminal-window {
     width: 100%;
     max-width: 800px;
-    border: 2px solid v.$gray;
-    height: 500px;
+    border: none; 
+    border-radius: 12px;
+    overflow: hidden;
+    
+    min-height: 500px; 
+    height: auto;
+    
     display: flex;
     flex-direction: column;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); 
 
-    // Nested selector: compiles to .terminal-window .terminal-body
-    .terminal-body {
-        flex-grow: 1;
-        padding: 20px;
-        overflow-y: auto;
+    .terminal-header {
+        // OLD: background-color: lighten(v.$bg-color, 5%);
+        // NEW: Uses color.adjust
+        background-color: color.adjust(v.$bg-color, $lightness: 5%);
+        
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid v.$gray;
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+            
+            .btn {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                
+                &.close { background-color: #fb4934; }    
+                &.minimize { background-color: #fabd2f; } 
+                &.maximize { background-color: #b8bb26; } 
+            }
+        }
+
+        .title {
+            flex-grow: 1;
+            text-align: center;
+            color: v.$gray;
+            font-size: 0.85rem;
+            font-family: sans-serif;
+            opacity: 0.8;
+        }
     }
 
-    // Specific text elements inside the terminal
+    .terminal-body {
+        background-color: v.$bg-color;
+        flex-grow: 1;
+        padding: 30px;
+        overflow-y: auto;
+        font-size: 1.05rem;
+
+        .welcome-msg {
+            color: v.$fg-color;
+            text-shadow: 0 0 5px rgba(v.$green, 0.5);
+        }
+
+        .sys-info p {
+            color: v.$gray;
+            font-size: 0.9rem;
+            margin-left: 20px;
+        }
+    }
+
     .prompt {
         color: v.$green;
         font-weight: bold;

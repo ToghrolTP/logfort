@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}sysetm{% endblock %}
+{% block title %}system{% endblock %}
 
 {% block content %}
     <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="buttons">
+          <span class="btn close"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <div class="title">toghrol@ubuntu: ~/workspace</div>
+      </div>
+
       <div class="terminal-body">
         <div>
           <span class="prompt">toghrol@ubuntu-25-04</span>:<span class="path"
@@ -12,11 +21,15 @@
         </div>
 
         <br />
-        <h1>> System Ready. Welcome, Toghrol.</h1>
-        <p>OS: Ubuntu 25.04 (Noble Numbat)</p>
-        <p>Shell: /bin/bash</p>
-        <p>Editor: Vim 9.1</p>
+        <h1 class="welcome-msg">> System Ready. Welcome, Toghrol.</h1>
+        
+        <div class="sys-info">
+            <p>OS: Ubuntu 25.04 (Noble Numbat)</p>
+            <p>Shell: /bin/bash</p>
+            <p>Editor: Vim 9.1</p>
+        </div>
         <br />
+        
         <p>Select a binary to execute:</p>
 
         <ul>
