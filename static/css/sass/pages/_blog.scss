@@ -52,14 +52,9 @@
 }
 
 .intro-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    
     .intro-text {
         color: v.$fg-dim;
         font-size: 1rem;
-        max-width: 60%;
     }
 }
 
