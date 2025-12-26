@@ -1,4 +1,5 @@
 use std::fmt;
+use axum::{response::{IntoResponse, Response}, http::StatusCode};
 
 pub enum AppError {
     Database(sqlx::Error),
@@ -38,6 +39,16 @@ impl From<sqlx::Error> for AppError {
 impl From<bcrypt::BcryptError> for AppError {
     fn from(err: bcrypt::BcryptError) -> Self {
         AppError::Bcrypt(err)
+    }
+}
+
+impl IntoResponse for AppError {
+    fn into_response(self) -> Response {
+        let (status, message) = match self {
+            AppError::Database(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
+            _ => (StatusCode::INTERNAL_SERVER_ERROR, "Unknown error".to_string())
+        };
+        (status, message).into_response()
     }
 }
 
