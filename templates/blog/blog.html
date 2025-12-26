@@ -24,41 +24,31 @@
     </header>
 
     <main>
+        {% for post in posts %}
         <article class="post-card">
             <div class="post-header">
-                <span class="post-date">2025-12-20</span>
+                <span class="post-date">
+                    {% match post.published_at %}
+                        {% when Some with (date) %}
+                            {{ date.format("%d %b %Y") }}
+                        {% when None %}
+                            Draft
+                    {% endmatch %}
+                </span>
             </div>
-            <a href="#" class="post-title" id="title-1">سلام</a>
+
+            <a href="#" class="post-title" id="title-1">{{ post.title }}</a>
             <p class="post-excerpt" id="excerpt-1">
-                I spent three hours writing a script to save myself five minutes of work. 
-                Was it worth it? Absolutely. Automation isn't just about time; it's about mental clarity.
+                {{ post.excerpt }}
             </p>
             <div class="post-footer">
                 <div class="tags">
-                    <span class="tag">python</span>
-                    <span class="tag">workflow</span>
+                    
                 </div>
                 <a href="#" class="read-btn" id="read-1">Read Buffer</a>
             </div>
         </article>
-
-        <article class="post-card">
-            <div class="post-header">
-                <span class="post-date">2025-12-15</span>
-            </div>
-            <a href="#" class="post-title" id="title-2">Designing with Gruvbox</a>
-            <p class="post-excerpt" id="excerpt-2">
-                Why do developers love this color scheme? It’s low contrast yet distinct. 
-                Here is how I implemented it across my entire Linux workspace.
-            </p>
-            <div class="post-footer">
-                <div class="tags">
-                    <span class="tag">design</span>
-                    <span class="tag">css</span>
-                </div>
-                <a href="#" class="read-btn" id="read-2">Read Buffer</a>
-            </div>
-        </article>
+        {% endfor %}
     </main>
 </div>
 
