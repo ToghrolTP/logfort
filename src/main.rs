@@ -2,6 +2,7 @@ mod config;
 mod db;
 mod error;
 mod handlers;
+mod models;
 mod templates;
 mod utils;
 
@@ -42,7 +43,7 @@ async fn main() {
 
     let bind_address = SocketAddr::from(([127, 0, 0, 1], config::server_port()));
 
-    let app = handlers::setup_routes();
+    let app = handlers::setup_routes(pool);
     let listener = tokio::net::TcpListener::bind(bind_address).await.unwrap();
 
     println!(
