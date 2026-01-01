@@ -13,6 +13,7 @@ pub fn setup_routes(pool: Pool<MySql>) -> Router {
         .route("/contact-info", get(handlers::home::contact_info))
         .route("/about-me", get(handlers::home::about_me))
         .route("/blog", get(handlers::blog::blog))
+        .route("/blog/{id}", get(handlers::blog::post_details))
         .with_state(pool)
         .nest_service("/static", ServeDir::new("static"))
         .layer(CompressionLayer::new())

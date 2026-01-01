@@ -2,7 +2,7 @@ use sqlx::FromRow;
 use chrono::{DateTime, Utc};
 
 #[derive(Debug, FromRow)]
-pub struct Posts {
+pub struct Post {
     pub id: u64,
     pub title: String,
     pub slug: String,
