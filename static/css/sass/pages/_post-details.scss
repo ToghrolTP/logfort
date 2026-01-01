@@ -1,0 +1,163 @@
+@use '../abstracts/variables' as *;
+
+.post-full {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  animation: fadeIn 0.5s ease-in-out;
+
+  .post-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px dashed $gray;
+    padding-bottom: 1rem;
+
+    .post-title {
+      font-family: $font-stack;
+      font-size: 2.2rem;
+      color: $yellow;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+      font-weight: bold;
+    }
+
+    .post-date {
+      color: $fg-dim;
+      font-family: $font-stack;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 0.5rem;
+      
+      &::before {
+        content: "> ";
+        color: $gray;
+      }
+    }
+  }
+
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: $fg-color;
+    font-family: $font-stack;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    // Headings
+    h1, h2, h3 {
+      color: $green;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      font-family: $font-stack;
+    }
+
+    h2 { 
+      font-size: 1.8rem; 
+      border-left: 4px solid $green; 
+      padding-left: 1rem; 
+      background: linear-gradient(90deg, rgba($green, 0.1) 0%, transparent 100%);
+    }
+    
+    h3 { font-size: 1.5rem; color: $aqua; }
+
+    a {
+      color: $blue;
+      text-decoration: underline;
+      transition: color 0.2s;
+      
+      &:hover { 
+        color: $aqua; 
+        text-decoration: none;
+      }
+    }
+
+    pre {
+      background-color: $bg-soft; 
+      padding: 1.2rem;
+      border-radius: $radius;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid $bg-hard;
+      box-shadow: $shadow-offset $shadow-offset 0px $bg-hard; // Retro shadow
+      
+      code {
+        font-family: $font-stack;
+        font-size: 0.95rem;
+        color: $fg-color;
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
+    code {
+      background-color: $bg-soft;
+      padding: 0.2rem 0.4rem;
+      border-radius: $radius;
+      font-family: $font-stack;
+      color: $orange;
+    }
+
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        &::marker {
+          color: $gray;
+        }
+      }
+    }
+    
+    blockquote {
+      border-left: 4px solid $purple;
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      font-style: italic;
+      color: $fg-dim;
+      background-color: rgba($bg-soft, 0.3);
+      padding: 1rem;
+      border-radius: 0 $radius $radius 0;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $radius;
+      border: 1px solid $gray;
+      margin: 1.5rem 0;
+    }
+  }
+
+  .post-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid $bg-soft;
+    
+    .back-btn {
+      display: inline-block;
+      color: $red;
+      font-family: $font-stack;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: $bg-soft;
+        border-color: $red;
+        padding: 0.5rem 1rem;
+        border-radius: $radius;
+        margin: -0.5rem -1rem;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
