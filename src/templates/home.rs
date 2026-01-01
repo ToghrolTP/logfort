@@ -1,10 +1,6 @@
 use askama::Template;
+use crate::templates::WithSiteContext;
 
-pub trait WithSiteContext {
-    fn site_name(&self) -> &'static str {
-        "LogforT"
-    }
-}
 
 // Home
 #[derive(Template)]

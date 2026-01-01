@@ -1,4 +1,4 @@
-use crate::{models::posts::Posts, templates::home::WithSiteContext};
+use crate::{models::posts::Posts, templates::WithSiteContext};
 use askama::Template;
 
 #[derive(Template)]
