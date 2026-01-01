@@ -3,10 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/css/sass/main.css" />
+    <link rel="stylesheet" href="/static/css/sass/main.css" />
     <title>{{ site_name() }}@{% block title %}{% endblock %}</title>
   </head>
   <body dir="auto">
-    {% block content %} {% endblock %}
+    <div class="blog-container">
+      <header class="blog-header">
+        <div class="nav-bar">
+          <div class="logo"><span>~/</span>logfort_blog</div>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="/" class="nav-link">Home</a></li>
+              <li><a href="/about-me" class="nav-link">About</a></li>
+              <li><a href="/blog" class="nav-link active">Blog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    <div
+      class="status-bar"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-top: 1px solid #32302f;
+        background: #1d2021;
+        color: #a89984;
+      "
+    >
+      <div>
+        <span
+          class="mode"
+          id="vim-mode"
+          style="
+            background: transparent;
+            border: 1px solid #98971a;
+            color: #98971a;
+            border-radius: 2px;
+          "
+          >INSERT</span
+        >
+        blog.html
+      </div>
+      <div>rustc 1.83.0 | utf-8 | 100%</div>
+    </div>
+
+    {% block script %}
+      
+    {% endblock %}
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const textElements = document.querySelectorAll(
+          ".post-title, .post-excerpt, .intro-text, .post-header, .post-content, .post-footer"
+        );
+
+        const persianRegex =
+          /^[\u0600-\u06FF\uFB8A\u067E\u0686\u06AF\u200C\u200F]/;
+
+        textElements.forEach((el) => {
+          const text = el.innerText.trim();
+
+          // 3. Check and Apply Direction
+          if (persianRegex.test(text)) {
+            el.style.direction = "rtl";
+            el.style.textAlign = "right";
+            el.style.fontFamily = "'Vazirmatn', sans-serif";
+          } else {
+            el.style.direction = "ltr";
+            el.style.textAlign = "left";
+          }
+        });
+      });
+    </script>
+    
   </body>
 </html>
